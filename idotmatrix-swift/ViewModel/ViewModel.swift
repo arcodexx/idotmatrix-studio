@@ -61,9 +61,12 @@ import ScriptingBridge
     var isSpotifyEnabled: Bool = false {
         didSet {
             if isSpotifyEnabled {
+                currentScreen = .musicIntegration
                 updateSpotifyAlbumArt()
             } else {
                 currentArtworkUrlString = ""
+                currentlyDisplayingImage = .notImage
+                setClock()
             }
         }
     }
@@ -89,6 +92,7 @@ import ScriptingBridge
 
     // Image
     var photoUrl: URL?
+    var currentPreviewImage: NSImage?
 
     // Light Effect
     var lightEffectColorSelected = 0

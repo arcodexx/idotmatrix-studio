@@ -9,6 +9,7 @@ import Foundation
 extension ViewModel {
     func setLightEffect() {
         currentlyDisplayingImage = .notImage
+        currentScreen = .lightEffect
         // total count = 7 + 3(colors)
         let totalCount = 7 + (3 * lightEffectColor.count)
 //        let data = Data([UInt8(totalCount),0,0,3,2,UInt8(lightEffectStyle),90,UInt8(lightEffectColor.count), UInt8(self.color.redComponent*255),UInt8(self.color.greenComponent*255),UInt8(self.color.blueComponent*255)])

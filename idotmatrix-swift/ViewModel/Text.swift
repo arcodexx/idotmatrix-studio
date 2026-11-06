@@ -15,6 +15,7 @@ extension ViewModel {
     @MainActor
     func sendText(_ text: String) {
         currentlyDisplayingImage = .notImage
+        currentScreen = .text
         guard !text.isEmpty else { return }
 
         // 1. Generate Bitmaps
@@ -38,7 +39,7 @@ extension ViewModel {
         var metadata = Data()
         withUnsafeBytes(of: numChars.littleEndian) { metadata.append(contentsOf: $0) }
         metadata.append(contentsOf: [0, 1] as [UInt8])
-        metadata.append(0) // Text Mode (0 = Replace, 1 = Marquee) - Trying 0 for instant feedback
+        metadata.append(1) // Text Mode: 1 = Marquee (scroll across display)
         metadata.append(95) // Speed
         metadata.append(1) // Color Mode
         metadata.append(UInt8(color.redComponent * 255))
