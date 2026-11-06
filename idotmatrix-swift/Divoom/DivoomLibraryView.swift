@@ -107,11 +107,35 @@ struct DivoomLibraryView: View {
         .onChange(of: selectedCategory) { _ in
             reloadGallery()
         }
+        .onChange(of: client.isLoggedIn) { loggedIn in
+            if loggedIn && files.isEmpty {
+                reloadGallery()
+            }
+        }
         .task {
-            // If already logged in, load gallery
-             if client.isLoggedIn {
-                 reloadGallery()
-             }
+            if client.isLoggedIn {
+                if files.isEmpty {
+                    reloadGallery()
+                }
+            } else if let emailToUse = UserDefaults.standard.string(forKey: "divoom_email"),
+                       let passToUse = UserDefaults.standard.string(forKey: "divoom_password"),
+                       !emailToUse.isEmpty, !passToUse.isEmpty {
+                self.email = emailToUse
+                self.password = passToUse
+                isLoggingIn = true
+                do {
+                    _ = try await client.login(email: emailToUse, password: passToUse)
+                    await MainActor.run {
+                        self.isLoggingIn = false
+                        reloadGallery()
+                    }
+                } catch {
+                    await MainActor.run {
+                        self.isLoggingIn = false
+                        loginError = error.localizedDescription
+                    }
+                }
+            }
         }
     }
     // MARK: - Actions

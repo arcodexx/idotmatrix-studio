@@ -70,6 +70,10 @@ extension ViewModel {
             chunks.append(chunkData)
         }
 
+        await MainActor.run {
+            self.currentPreviewImage = NSImage(data: gifData)
+        }
+
         for chunk in chunks {
             sendData(data: chunk)
             if delay > 0 {

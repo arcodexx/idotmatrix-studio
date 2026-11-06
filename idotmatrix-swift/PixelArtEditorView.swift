@@ -72,54 +72,48 @@ struct PixelArtEditorView: View {
     }
 
     var body: some View {
-        VStack {
-            // Header
-            HStack {
-                Text("Pixel Art Editor")
-                    .font(.headline)
-                    .bold()
+        ScrollView {
+            VStack(spacing: 12) {
+                // Header
+                HStack {
+                    Text("Pixel Art Editor")
+                        .font(.headline)
+                        .bold()
 
-                Spacer()
+                    Spacer()
 
-                // Actions
-                HStack(spacing: 12) {
-                    Button(action: importImage) {
-                        Label("Import", systemImage: "square.and.arrow.down")
+                    // Actions
+                    HStack(spacing: 12) {
+                        Button(action: importImage) {
+                            Label("Import", systemImage: "square.and.arrow.down")
+                        }
+                        .help("Import Image")
+
+                        Button(action: { showingSaveAlert = true }) {
+                            Label("Save", systemImage: "square.and.arrow.up")
+                        }
+                        .help("Save to My Assets")
+
+                        Button("Send") {
+                            Task { await sendPixelArt() }
+                        }
+                        .buttonStyle(.borderedProminent)
                     }
-                    .help("Import Image")
-
-                    Button(action: { AssetsWindowManager.shared.open() }) {
-                        Label("My Assets", systemImage: "folder.fill")
-                    }
-                    .help("View Saved Assets")
-
-                    Button(action: { showingSaveAlert = true }) {
-                        Label("Save", systemImage: "square.and.arrow.up")
-                    }
-                    .help("Save to My Assets")
-
-                    Button("Send") {
-                        Task { await sendPixelArt() }
-                    }
-                    .buttonStyle(.borderedProminent)
                 }
-            }
-            .padding()
-            .alert("Save Pixel Art", isPresented: $showingSaveAlert) {
-                TextField("Art Name", text: $artName)
-                Button("Save") {
-                    AssetManager.shared.savePixelArt(name: artName.isEmpty ? "Untitled" : artName, colors: gridColors)
-                    artName = ""
+                .padding(.horizontal)
+                .padding(.top, 12)
+                .alert("Save Pixel Art", isPresented: $showingSaveAlert) {
+                    TextField("Art Name", text: $artName)
+                    Button("Save") {
+                        AssetManager.shared.savePixelArt(name: artName.isEmpty ? "Untitled" : artName, colors: gridColors)
+                        artName = ""
+                    }
+                    Button("Cancel", role: .cancel) { }
                 }
-                Button("Cancel", role: .cancel) { }
-            }
 
-            // Drawing Area
-            GeometryReader { geometry in
-                let width = geometry.size.width
-                let height = geometry.size.height
-                let size = min(width, height)
-                let cellSize = size / 32.0
+                // Drawing Area (Fixed 384x384: 12 pt per pixel for a razor-sharp 32x32 canvas)
+                let canvasSize: CGFloat = 384.0
+                let cellSize: CGFloat = 12.0
 
                 ZStack {
                     Canvas { context, size in
@@ -135,9 +129,10 @@ struct PixelArtEditorView: View {
                         }
                     }
                 }
-                .frame(width: size, height: size)
+                .frame(width: canvasSize, height: canvasSize)
                 .background(Color.black)
                 .border(Color.gray, width: 1)
+                .shadow(color: .black.opacity(0.3), radius: 6, x: 0, y: 3)
                 .onHover { isHovering in
                     if isHovering {
                         switch currentTool {
@@ -159,14 +154,14 @@ struct PixelArtEditorView: View {
                             }
                         }
                 )
-            }
-            .aspectRatio(1, contentMode: .fit)
-            .padding(.horizontal)
 
-            // Tools
-            ToolsView(currentTool: $currentTool, selectedDynamicColor: $selectedDynamicColor, systemColorBinding: systemColorBinding, selectedColor: selectedColor, gridColors: $gridColors)
+                // Tools Panel
+                ToolsView(currentTool: $currentTool, selectedDynamicColor: $selectedDynamicColor, systemColorBinding: systemColorBinding, selectedColor: selectedColor, gridColors: $gridColors)
+                    .padding(.top, 4)
+            }
+            .padding(.bottom, 20)
         }
-        .frame(minWidth: 720, minHeight: 750)
+        .frame(minWidth: 600, minHeight: 520)
         .background(Color(nsColor: .windowBackgroundColor))
         .contentShape(Rectangle())
         .onTapGesture { }

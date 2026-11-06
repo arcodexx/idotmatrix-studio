@@ -10,6 +10,8 @@ import Foundation
 // Eco
 extension ViewModel {
     func setEco() {
+        currentlyDisplayingImage = .notImage
+        currentScreen = .eco
         // as per python3-idotmatrix-library, the flag is unknown and either a 1 or a 0
         // for now using 1 to set it
         let data = Data([10,0,2,128,1,UInt8(calendar.component(.hour, from: startUpDate)),UInt8(calendar.component(.minute, from: startUpDate)),UInt8(calendar.component(.hour, from: endDate)),UInt8(calendar.component(.minute, from: endDate)),UInt8(ecoBrightness)])

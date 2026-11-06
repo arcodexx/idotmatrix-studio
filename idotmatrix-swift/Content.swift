@@ -13,10 +13,7 @@ struct ContentWrapper: View {
     @State var viewModel = ViewModel.shared
 
     var body: some View {
-        Content(viewModel: $viewModel)
-        #if os(macOS)
-            .frame(width: 350)
-        #endif
+        MenuBarQuickView()
     }
 }
 
@@ -64,15 +61,16 @@ struct Content: View {
                         viewModel.flipScreen()
                     }
             }
-            CompactSlider(
-                value: $viewModel.brightness,
-                in: 5...100,
-                step: 1
-            ) {
+            HStack {
                 Text("Brightness")
                 Spacer()
                 Text(String(format: "%.0f%%", viewModel.brightness))
             }
+            CompactSlider(
+                value: $viewModel.brightness,
+                in: 5...100,
+                step: 1
+            )
             .frame(height: 24)
             .onChange(of: viewModel.brightness) {
                 viewModel.setBrightness()
@@ -97,15 +95,16 @@ struct Content: View {
                     .padding(.vertical, 7.5)
                     .padding(.trailing, 15)
             }
-            CompactSlider(
-                value: $viewModel.brightness,
-                in: 5...100,
-                step: 1
-            ) {
+            HStack {
                 Text("Brightness")
                 Spacer()
                 Text(String(format: "%.0f%%", viewModel.brightness))
             }
+            CompactSlider(
+                value: $viewModel.brightness,
+                in: 5...100,
+                step: 1
+            )
             .frame(height: 24)
             .onChange(of: viewModel.brightness) {
                 viewModel.setBrightness()
@@ -231,15 +230,16 @@ struct Content: View {
             ColorPickerRing(color: $viewModel.color, strokeWidth: 30)
                 .frame(width: 200, height: 200, alignment: .center)
 
+            HStack {
+                Text("Brightness")
+                Spacer()
+                Text(String(format: "%.0f%%", viewModel.brightness))
+            }
             CompactSlider(
                  value: $viewModel.brightness,
                  in: 5...100,
                  step: 1
-             ) {
-                 Text("Brightness")
-                 Spacer()
-                 Text(String(format: "%.0f%%", viewModel.brightness))
-             }
+             )
              .frame(height: 24)
              .onChange(of: viewModel.brightness) {
                  viewModel.setBrightness()
@@ -333,15 +333,16 @@ struct Content: View {
                     .font(.system(size: 24))
                     .frame(height: 40)
             }
-            CompactSlider(
-                value: $viewModel.brightness,
-                in: 5...100,
-                step: 1
-            ) {
+            HStack {
                 Text("Brightness")
                 Spacer()
                 Text(String(format: "%.0f%%", viewModel.brightness))
             }
+            CompactSlider(
+                value: $viewModel.brightness,
+                in: 5...100,
+                step: 1
+            )
             .frame(height: 24)
             .onChange(of: viewModel.brightness) {
                 viewModel.setBrightness()
@@ -413,15 +414,16 @@ struct Content: View {
                     .font(.system(size: 24))
                     .frame(height: 40)
             }
-            CompactSlider(
-                value: $viewModel.brightness,
-                in: 5...100,
-                step: 1
-            ) {
+            HStack {
                 Text("Brightness")
                 Spacer()
                 Text(String(format: "%.0f%%", viewModel.brightness))
             }
+            CompactSlider(
+                value: $viewModel.brightness,
+                in: 5...100,
+                step: 1
+            )
             .frame(height: 24)
             .onChange(of: viewModel.brightness) {
                 viewModel.setBrightness()
@@ -521,21 +523,19 @@ struct Content: View {
                     .font(.system(size: 24))
                     .frame(height: 40)
             }
+            Text(String(format: "%.0f Minutes", viewModel.minutes))
             CompactSlider(
                 value: $viewModel.minutes,
                 in: 0...90,
                 step: 1.0
-            ) {
-                Text(String(format: "%.0f Minutes", viewModel.minutes))
-            }
+            )
             .frame(height: 24)
+            Text(String(format: "%.0f Seconds", viewModel.seconds))
             CompactSlider(
                 value: $viewModel.seconds,
                 in: 0...59,
                 step: 1.0
-            ) {
-                Text(String(format: "%.0f Seconds", viewModel.seconds))
-            }
+            )
             .frame(height: 24)
             HStack {
                 switch viewModel.countdownMode {
@@ -590,15 +590,16 @@ struct Content: View {
             }
             DatePicker("Start Time", selection: $viewModel.startUpDate, displayedComponents: .hourAndMinute)
             DatePicker("End Time", selection: $viewModel.endDate, displayedComponents: .hourAndMinute)
-            CompactSlider(
-                value: $viewModel.ecoBrightness,
-                in: 5...100,
-                step: 1.0
-            ) {
+            HStack {
                 Text("Eco Brightness")
                 Spacer()
                 Text(String(format: "%.0f%%", viewModel.ecoBrightness))
             }
+            CompactSlider(
+                value: $viewModel.ecoBrightness,
+                in: 5...100,
+                step: 1.0
+            )
             .frame(height: 24)
         }
     }

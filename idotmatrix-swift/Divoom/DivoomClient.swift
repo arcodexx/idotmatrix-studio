@@ -131,7 +131,13 @@ class DivoomClient: ObservableObject {
     private let userAgent = "Aurabox/3.1.10 (iPad; iOS 14.8; Scale/2.00)"
 
     init() {
-        // Look for saved credentials or token if implemented later
+        if let savedEmail = UserDefaults.standard.string(forKey: "divoom_email"),
+           let savedPassword = UserDefaults.standard.string(forKey: "divoom_password"),
+           !savedEmail.isEmpty, !savedPassword.isEmpty {
+            Task {
+                _ = try? await self.login(email: savedEmail, password: savedPassword)
+            }
+        }
     }
 
     // MARK: - Auth
@@ -152,6 +158,8 @@ class DivoomClient: ObservableObject {
             await MainActor.run {
                 self.currentUser = user
                 self.isLoggedIn = true
+                UserDefaults.standard.set(email, forKey: "divoom_email")
+                UserDefaults.standard.set(password, forKey: "divoom_password")
             }
             return true
         } else {

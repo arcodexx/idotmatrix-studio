@@ -129,7 +129,7 @@ struct AssetItemView: View {
                 }
             } else if asset.type == .pixelArt, let colors = asset.gridColors {
                 // Determine width from count (assuming square)
-                let size = Int(sqrt(Double(colors.count)))
+                _ = Int(sqrt(Double(colors.count)))
                 // TODO: Send Pixel Art logic (not implemented in ViewModel easily yet?)
                 // Actually ViewModel has sendData, maybe we need a dedicated function?
                 // Or just open in Editor and let user tap Send.

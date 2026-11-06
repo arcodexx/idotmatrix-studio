@@ -124,6 +124,9 @@ extension ViewModel {
             sendData(data: imageModeData)
             currentlyDisplayingImage = .image
         }
+        await MainActor.run {
+            self.currentPreviewImage = NSImage(data: photoData)
+        }
         for chunk in chunks {
             if Task.isCancelled { return }
             sendData(data: chunk, .withoutResponse)

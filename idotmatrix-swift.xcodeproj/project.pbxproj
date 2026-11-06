@@ -3,40 +3,109 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F022C042C69582D0006E814 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F022C032C69582D0006E814 /* Content.swift */; };
-		8F27F0162CE6BB1800117E8E /* gifsicle in Resources */ = {isa = PBXBuildFile; fileRef = 8F27F0152CE6BB1800117E8E /* gifsicle */; };
+		BA5646D1309B2308002F52E6 /* DivoomClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646D1309B2308002F52E6 /* DivoomClient.swift */; };
+		BA5646D2309B2308002F52E6 /* DivoomLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646D2309B2308002F52E6 /* DivoomLibraryView.swift */; };
+		BA5646D3309B2308002F52E6 /* DivoomWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646D3309B2308002F52E6 /* DivoomWindowManager.swift */; };
+		BA5646D4309B2308002F52E6 /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646D4309B2308002F52E6 /* GifView.swift */; };
+		BA5646DA309B2308002F52E6 /* Chronograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646DA309B2308002F52E6 /* Chronograph.swift */; };
+		BA5646DB309B2308002F52E6 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646DB309B2308002F52E6 /* Clock.swift */; };
+		BA5646DC309B2308002F52E6 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646DC309B2308002F52E6 /* Countdown.swift */; };
+		BA5646DD309B2308002F52E6 /* DeviceStatusEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646DD309B2308002F52E6 /* DeviceStatusEnum.swift */; };
+		BA5646DE309B2308002F52E6 /* DisplaySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646DE309B2308002F52E6 /* DisplaySettings.swift */; };
+		BA5646DF309B2308002F52E6 /* Eco.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646DF309B2308002F52E6 /* Eco.swift */; };
+		BA5646E0309B2308002F52E6 /* FullscreenColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646E0309B2308002F52E6 /* FullscreenColor.swift */; };
+		BA5646E1309B2308002F52E6 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646E1309B2308002F52E6 /* Gif.swift */; };
+		BA5646E2309B2308002F52E6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646E2309B2308002F52E6 /* Image.swift */; };
+		BA5646E3309B2308002F52E6 /* LightEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646E3309B2308002F52E6 /* LightEffect.swift */; };
+		BA5646E4309B2308002F52E6 /* MusicIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646E4309B2308002F52E6 /* MusicIntegration.swift */; };
+		BA5646E5309B2308002F52E6 /* PossibleScreenEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646E5309B2308002F52E6 /* PossibleScreenEnums.swift */; };
+		BA5646E6309B2308002F52E6 /* SleepWakeIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646E6309B2308002F52E6 /* SleepWakeIntegration.swift */; };
+		BA5646E7309B2308002F52E6 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646E7309B2308002F52E6 /* Text.swift */; };
+		BA5646E8309B2308002F52E6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646E8309B2308002F52E6 /* ViewModel.swift */; };
+		BA5646EA309B2308002F52E6 /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646EA309B2308002F52E6 /* AssetManager.swift */; };
+		BA5646EC309B2308002F52E6 /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646EC309B2308002F52E6 /* AssetsView.swift */; };
+		BA5646ED309B2308002F52E6 /* AssetsWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646ED309B2308002F52E6 /* AssetsWindowManager.swift */; };
+		BA5646EE309B2308002F52E6 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646EE309B2308002F52E6 /* Content.swift */; };
+		BA5646F1309B2308002F52E6 /* idotmatrix_swiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646F1309B2308002F52E6 /* idotmatrix_swiftApp.swift */; };
+		BA5646F3309B2308002F52E6 /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646F3309B2308002F52E6 /* Intents.swift */; };
+		BA5646F4309B2308002F52E6 /* MenuBarQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646F4309B2308002F52E6 /* MenuBarQuickView.swift */; };
+		BA5646F5309B2308002F52E6 /* PixelArtEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646F5309B2308002F52E6 /* PixelArtEditorView.swift */; };
+		BA5646F6309B2308002F52E6 /* PixelArtStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646F6309B2308002F52E6 /* PixelArtStorage.swift */; };
+		BA5646F7309B2308002F52E6 /* ScheduleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646F7309B2308002F52E6 /* ScheduleEditorView.swift */; };
+		BA5646F8309B2308002F52E6 /* ScheduleEditorWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646F8309B2308002F52E6 /* ScheduleEditorWindowManager.swift */; };
+		BA5646F9309B2308002F52E6 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646F9309B2308002F52E6 /* ScheduleManager.swift */; };
+		BA5646FA309B2308002F52E6 /* SchedulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646FA309B2308002F52E6 /* SchedulerView.swift */; };
+		BA5646FB309B2308002F52E6 /* SchedulerWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646FB309B2308002F52E6 /* SchedulerWindowManager.swift */; };
+		BA5646FC309B2308002F52E6 /* SpotifyScripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646FC309B2308002F52E6 /* SpotifyScripting.swift */; };
+		BA5646FD309B2308002F52E6 /* StudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646FD309B2308002F52E6 /* StudioView.swift */; };
+		BA5646FE309B2308002F52E6 /* StudioWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646FE309B2308002F52E6 /* StudioWindowManager.swift */; };
+		BA5646FF309B2308002F52E6 /* TimeSlotEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5646FF309B2308002F52E6 /* TimeSlotEditorSheet.swift */; };
+		BA564700309B2308002F52E6 /* TimeSlotEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA564700309B2308002F52E6 /* TimeSlotEditorView.swift */; };
+		BA564701309B2308002F52E6 /* VirtualMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA564701309B2308002F52E6 /* VirtualMatrixView.swift */; };
+		BA5646EB309B2308002F52E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA5646EB309B2308002F52E6 /* Assets.xcassets */; };
+		BA5646D6309B2308002F52E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA5646D6309B2308002F52E6 /* Preview Assets.xcassets */; };
+		BA5646EF309B2308002F52E6 /* gifsicle in Resources */ = {isa = PBXBuildFile; fileRef = AA5646EF309B2308002F52E6 /* gifsicle */; };
 		8F352AF32C674AA700D107CD /* CompactSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 8F352AF22C674AA700D107CD /* CompactSlider */; };
-		8F352AF52C6842EB00D107CD /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F352AF42C6842EB00D107CD /* Intents.swift */; };
 		8F352AFB2C69530500D107CD /* FluidMenuBarExtra in Frameworks */ = {isa = PBXBuildFile; platformFilters = (macos, ); productRef = 8F352AFA2C69530500D107CD /* FluidMenuBarExtra */; };
-		8F3730642C65CF7D000421B9 /* idotmatrix_swiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3730632C65CF7D000421B9 /* idotmatrix_swiftApp.swift */; };
-		8F3730682C65CF7E000421B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F3730672C65CF7E000421B9 /* Assets.xcassets */; };
-		8F37306B2C65CF7E000421B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F37306A2C65CF7E000421B9 /* Preview Assets.xcassets */; };
 		8F3730752C65D189000421B9 /* SwiftBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 8F3730742C65D189000421B9 /* SwiftBluetooth */; };
 		8F7B369D2CADB23600DB7FEC /* ColorPickerRing in Frameworks */ = {isa = PBXBuildFile; productRef = 8F7B369C2CADB23600DB7FEC /* ColorPickerRing */; };
 		8F7B36A02CADB30600DB7FEC /* DynamicColor in Frameworks */ = {isa = PBXBuildFile; productRef = 8F7B369F2CADB30600DB7FEC /* DynamicColor */; };
-		8F9FDCEA2CF95707003874CE /* SpotifyScripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9FDCE92CF95707003874CE /* SpotifyScripting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8F022C032C69582D0006E814 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
-		8F27F0152CE6BB1800117E8E /* gifsicle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle; sourceTree = "<group>"; };
-		8F352AF42C6842EB00D107CD /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		8F3730602C65CF7D000421B9 /* Dot Matrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dot Matrix.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F3730632C65CF7D000421B9 /* idotmatrix_swiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = idotmatrix_swiftApp.swift; sourceTree = "<group>"; };
-		8F3730672C65CF7E000421B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8F37306A2C65CF7E000421B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8F37306C2C65CF7E000421B9 /* idotmatrix_swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = idotmatrix_swift.entitlements; sourceTree = "<group>"; };
-		8F3730722C65D02F000421B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8F9FDCE92CF95707003874CE /* SpotifyScripting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyScripting.swift; sourceTree = "<group>"; };
+		AA5646D1309B2308002F52E6 /* DivoomClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivoomClient.swift; sourceTree = "<group>"; };
+		AA5646D2309B2308002F52E6 /* DivoomLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivoomLibraryView.swift; sourceTree = "<group>"; };
+		AA5646D3309B2308002F52E6 /* DivoomWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivoomWindowManager.swift; sourceTree = "<group>"; };
+		AA5646D4309B2308002F52E6 /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
+		AA5646D6309B2308002F52E6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AA5646D8309B2308002F52E6 /* divoom_convert.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = divoom_convert.py; sourceTree = "<group>"; };
+		AA5646DA309B2308002F52E6 /* Chronograph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chronograph.swift; sourceTree = "<group>"; };
+		AA5646DB309B2308002F52E6 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		AA5646DC309B2308002F52E6 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
+		AA5646DD309B2308002F52E6 /* DeviceStatusEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStatusEnum.swift; sourceTree = "<group>"; };
+		AA5646DE309B2308002F52E6 /* DisplaySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySettings.swift; sourceTree = "<group>"; };
+		AA5646DF309B2308002F52E6 /* Eco.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eco.swift; sourceTree = "<group>"; };
+		AA5646E0309B2308002F52E6 /* FullscreenColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenColor.swift; sourceTree = "<group>"; };
+		AA5646E1309B2308002F52E6 /* Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
+		AA5646E2309B2308002F52E6 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		AA5646E3309B2308002F52E6 /* LightEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightEffect.swift; sourceTree = "<group>"; };
+		AA5646E4309B2308002F52E6 /* MusicIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicIntegration.swift; sourceTree = "<group>"; };
+		AA5646E5309B2308002F52E6 /* PossibleScreenEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleScreenEnums.swift; sourceTree = "<group>"; };
+		AA5646E6309B2308002F52E6 /* SleepWakeIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepWakeIntegration.swift; sourceTree = "<group>"; };
+		AA5646E7309B2308002F52E6 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		AA5646E8309B2308002F52E6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		AA5646EA309B2308002F52E6 /* AssetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetManager.swift; sourceTree = "<group>"; };
+		AA5646EB309B2308002F52E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA5646EC309B2308002F52E6 /* AssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsView.swift; sourceTree = "<group>"; };
+		AA5646ED309B2308002F52E6 /* AssetsWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsWindowManager.swift; sourceTree = "<group>"; };
+		AA5646EE309B2308002F52E6 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		AA5646EF309B2308002F52E6 /* gifsicle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle; sourceTree = "<group>"; };
+		AA5646F0309B2308002F52E6 /* idotmatrix_swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = idotmatrix_swift.entitlements; sourceTree = "<group>"; };
+		AA5646F1309B2308002F52E6 /* idotmatrix_swiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = idotmatrix_swiftApp.swift; sourceTree = "<group>"; };
+		AA5646F2309B2308002F52E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA5646F3309B2308002F52E6 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
+		AA5646F4309B2308002F52E6 /* MenuBarQuickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarQuickView.swift; sourceTree = "<group>"; };
+		AA5646F5309B2308002F52E6 /* PixelArtEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelArtEditorView.swift; sourceTree = "<group>"; };
+		AA5646F6309B2308002F52E6 /* PixelArtStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelArtStorage.swift; sourceTree = "<group>"; };
+		AA5646F7309B2308002F52E6 /* ScheduleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditorView.swift; sourceTree = "<group>"; };
+		AA5646F8309B2308002F52E6 /* ScheduleEditorWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditorWindowManager.swift; sourceTree = "<group>"; };
+		AA5646F9309B2308002F52E6 /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
+		AA5646FA309B2308002F52E6 /* SchedulerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerView.swift; sourceTree = "<group>"; };
+		AA5646FB309B2308002F52E6 /* SchedulerWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerWindowManager.swift; sourceTree = "<group>"; };
+		AA5646FC309B2308002F52E6 /* SpotifyScripting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyScripting.swift; sourceTree = "<group>"; };
+		AA5646FD309B2308002F52E6 /* StudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioView.swift; sourceTree = "<group>"; };
+		AA5646FE309B2308002F52E6 /* StudioWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioWindowManager.swift; sourceTree = "<group>"; };
+		AA5646FF309B2308002F52E6 /* TimeSlotEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotEditorSheet.swift; sourceTree = "<group>"; };
+		AA564700309B2308002F52E6 /* TimeSlotEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotEditorView.swift; sourceTree = "<group>"; };
+		AA564701309B2308002F52E6 /* VirtualMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualMatrixView.swift; sourceTree = "<group>"; };
+		AA564703309B2308002F52E6 /* idotmatrix-swift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "idotmatrix-swift.xcodeproj"; sourceTree = "<group>"; };
+		AA564704309B2308002F52E6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		8FA5086B2CFD266000AD0549 /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8F37305D2C65CF7D000421B9 /* Frameworks */ = {
@@ -57,7 +126,9 @@
 		8F3730572C65CF7D000421B9 = {
 			isa = PBXGroup;
 			children = (
-				8F3730622C65CF7D000421B9 /* idotmatrix-swift */,
+				AA564702309B2308002F52E6 /* idotmatrix-swift */,
+				AA564703309B2308002F52E6 /* idotmatrix-swift.xcodeproj */,
+				AA564704309B2308002F52E6 /* README.md */,
 				8F3730612C65CF7D000421B9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,29 +141,93 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8F3730622C65CF7D000421B9 /* idotmatrix-swift */ = {
+		AA5646D5309B2308002F52E6 /* Divoom */ = {
 			isa = PBXGroup;
 			children = (
-				8F3730722C65D02F000421B9 /* Info.plist */,
-				8F27F0152CE6BB1800117E8E /* gifsicle */,
-				8F022C032C69582D0006E814 /* Content.swift */,
-				8F3730632C65CF7D000421B9 /* idotmatrix_swiftApp.swift */,
-				8F9FDCE92CF95707003874CE /* SpotifyScripting.swift */,
-				8F352AF42C6842EB00D107CD /* Intents.swift */,
-				8FA5086B2CFD266000AD0549 /* ViewModel */,
-				8F3730672C65CF7E000421B9 /* Assets.xcassets */,
-				8F37306C2C65CF7E000421B9 /* idotmatrix_swift.entitlements */,
-				8F3730692C65CF7E000421B9 /* Preview Content */,
+				AA5646D1309B2308002F52E6 /* DivoomClient.swift */,
+				AA5646D2309B2308002F52E6 /* DivoomLibraryView.swift */,
+				AA5646D3309B2308002F52E6 /* DivoomWindowManager.swift */,
+				AA5646D4309B2308002F52E6 /* GifView.swift */,
+			);
+			path = Divoom;
+			sourceTree = "<group>";
+		};
+		AA5646D7309B2308002F52E6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				AA5646D6309B2308002F52E6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AA5646D9309B2308002F52E6 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				AA5646D8309B2308002F52E6 /* divoom_convert.py */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		AA5646E9309B2308002F52E6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AA5646DA309B2308002F52E6 /* Chronograph.swift */,
+				AA5646DB309B2308002F52E6 /* Clock.swift */,
+				AA5646DC309B2308002F52E6 /* Countdown.swift */,
+				AA5646DD309B2308002F52E6 /* DeviceStatusEnum.swift */,
+				AA5646DE309B2308002F52E6 /* DisplaySettings.swift */,
+				AA5646DF309B2308002F52E6 /* Eco.swift */,
+				AA5646E0309B2308002F52E6 /* FullscreenColor.swift */,
+				AA5646E1309B2308002F52E6 /* Gif.swift */,
+				AA5646E2309B2308002F52E6 /* Image.swift */,
+				AA5646E3309B2308002F52E6 /* LightEffect.swift */,
+				AA5646E4309B2308002F52E6 /* MusicIntegration.swift */,
+				AA5646E5309B2308002F52E6 /* PossibleScreenEnums.swift */,
+				AA5646E6309B2308002F52E6 /* SleepWakeIntegration.swift */,
+				AA5646E7309B2308002F52E6 /* Text.swift */,
+				AA5646E8309B2308002F52E6 /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AA564702309B2308002F52E6 /* idotmatrix-swift */ = {
+			isa = PBXGroup;
+			children = (
+				AA5646D5309B2308002F52E6 /* Divoom */,
+				AA5646D7309B2308002F52E6 /* Preview Content */,
+				AA5646D9309B2308002F52E6 /* Scripts */,
+				AA5646E9309B2308002F52E6 /* ViewModel */,
+				AA5646EA309B2308002F52E6 /* AssetManager.swift */,
+				AA5646EB309B2308002F52E6 /* Assets.xcassets */,
+				AA5646EC309B2308002F52E6 /* AssetsView.swift */,
+				AA5646ED309B2308002F52E6 /* AssetsWindowManager.swift */,
+				AA5646EE309B2308002F52E6 /* Content.swift */,
+				AA5646EF309B2308002F52E6 /* gifsicle */,
+				AA5646F0309B2308002F52E6 /* idotmatrix_swift.entitlements */,
+				AA5646F1309B2308002F52E6 /* idotmatrix_swiftApp.swift */,
+				AA5646F2309B2308002F52E6 /* Info.plist */,
+				AA5646F3309B2308002F52E6 /* Intents.swift */,
+				AA5646F4309B2308002F52E6 /* MenuBarQuickView.swift */,
+				AA5646F5309B2308002F52E6 /* PixelArtEditorView.swift */,
+				AA5646F6309B2308002F52E6 /* PixelArtStorage.swift */,
+				AA5646F7309B2308002F52E6 /* ScheduleEditorView.swift */,
+				AA5646F8309B2308002F52E6 /* ScheduleEditorWindowManager.swift */,
+				AA5646F9309B2308002F52E6 /* ScheduleManager.swift */,
+				AA5646FA309B2308002F52E6 /* SchedulerView.swift */,
+				AA5646FB309B2308002F52E6 /* SchedulerWindowManager.swift */,
+				AA5646FC309B2308002F52E6 /* SpotifyScripting.swift */,
+				AA5646FD309B2308002F52E6 /* StudioView.swift */,
+				AA5646FE309B2308002F52E6 /* StudioWindowManager.swift */,
+				AA5646FF309B2308002F52E6 /* TimeSlotEditorSheet.swift */,
+				AA564700309B2308002F52E6 /* TimeSlotEditorView.swift */,
+				AA564701309B2308002F52E6 /* VirtualMatrixView.swift */,
 			);
 			path = "idotmatrix-swift";
 			sourceTree = "<group>";
 		};
-		8F3730692C65CF7E000421B9 /* Preview Content */ = {
+		AA564705309B2308002F52E6 /* Products */ = {
 			isa = PBXGroup;
-			children = (
-				8F37306A2C65CF7E000421B9 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,9 +244,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				8FA5086B2CFD266000AD0549 /* ViewModel */,
 			);
 			name = "Dot Matrix";
 			packageProductDependencies = (
@@ -161,6 +293,12 @@
 			);
 			productRefGroup = 8F3730612C65CF7D000421B9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AA564705309B2308002F52E6 /* Products */;
+					ProjectRef = AA564703309B2308002F52E6 /* idotmatrix-swift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8F37305F2C65CF7D000421B9 /* Dot Matrix */,
@@ -173,9 +311,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F37306B2C65CF7E000421B9 /* Preview Assets.xcassets in Resources */,
-				8F3730682C65CF7E000421B9 /* Assets.xcassets in Resources */,
-				8F27F0162CE6BB1800117E8E /* gifsicle in Resources */,
+				BA5646D6309B2308002F52E6 /* Preview Assets.xcassets in Resources */,
+				BA5646EB309B2308002F52E6 /* Assets.xcassets in Resources */,
+				BA5646EF309B2308002F52E6 /* gifsicle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,10 +324,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F352AF52C6842EB00D107CD /* Intents.swift in Sources */,
-				8F9FDCEA2CF95707003874CE /* SpotifyScripting.swift in Sources */,
-				8F3730642C65CF7D000421B9 /* idotmatrix_swiftApp.swift in Sources */,
-				8F022C042C69582D0006E814 /* Content.swift in Sources */,
+				BA5646D1309B2308002F52E6 /* DivoomClient.swift in Sources */,
+				BA5646D2309B2308002F52E6 /* DivoomLibraryView.swift in Sources */,
+				BA5646D3309B2308002F52E6 /* DivoomWindowManager.swift in Sources */,
+				BA5646D4309B2308002F52E6 /* GifView.swift in Sources */,
+				BA5646DA309B2308002F52E6 /* Chronograph.swift in Sources */,
+				BA5646DB309B2308002F52E6 /* Clock.swift in Sources */,
+				BA5646DC309B2308002F52E6 /* Countdown.swift in Sources */,
+				BA5646DD309B2308002F52E6 /* DeviceStatusEnum.swift in Sources */,
+				BA5646DE309B2308002F52E6 /* DisplaySettings.swift in Sources */,
+				BA5646DF309B2308002F52E6 /* Eco.swift in Sources */,
+				BA5646E0309B2308002F52E6 /* FullscreenColor.swift in Sources */,
+				BA5646E1309B2308002F52E6 /* Gif.swift in Sources */,
+				BA5646E2309B2308002F52E6 /* Image.swift in Sources */,
+				BA5646E3309B2308002F52E6 /* LightEffect.swift in Sources */,
+				BA5646E4309B2308002F52E6 /* MusicIntegration.swift in Sources */,
+				BA5646E5309B2308002F52E6 /* PossibleScreenEnums.swift in Sources */,
+				BA5646E6309B2308002F52E6 /* SleepWakeIntegration.swift in Sources */,
+				BA5646E7309B2308002F52E6 /* Text.swift in Sources */,
+				BA5646E8309B2308002F52E6 /* ViewModel.swift in Sources */,
+				BA5646EA309B2308002F52E6 /* AssetManager.swift in Sources */,
+				BA5646EC309B2308002F52E6 /* AssetsView.swift in Sources */,
+				BA5646ED309B2308002F52E6 /* AssetsWindowManager.swift in Sources */,
+				BA5646EE309B2308002F52E6 /* Content.swift in Sources */,
+				BA5646F1309B2308002F52E6 /* idotmatrix_swiftApp.swift in Sources */,
+				BA5646F3309B2308002F52E6 /* Intents.swift in Sources */,
+				BA5646F4309B2308002F52E6 /* MenuBarQuickView.swift in Sources */,
+				BA5646F5309B2308002F52E6 /* PixelArtEditorView.swift in Sources */,
+				BA5646F6309B2308002F52E6 /* PixelArtStorage.swift in Sources */,
+				BA5646F7309B2308002F52E6 /* ScheduleEditorView.swift in Sources */,
+				BA5646F8309B2308002F52E6 /* ScheduleEditorWindowManager.swift in Sources */,
+				BA5646F9309B2308002F52E6 /* ScheduleManager.swift in Sources */,
+				BA5646FA309B2308002F52E6 /* SchedulerView.swift in Sources */,
+				BA5646FB309B2308002F52E6 /* SchedulerWindowManager.swift in Sources */,
+				BA5646FC309B2308002F52E6 /* SpotifyScripting.swift in Sources */,
+				BA5646FD309B2308002F52E6 /* StudioView.swift in Sources */,
+				BA5646FE309B2308002F52E6 /* StudioWindowManager.swift in Sources */,
+				BA5646FF309B2308002F52E6 /* TimeSlotEditorSheet.swift in Sources */,
+				BA564700309B2308002F52E6 /* TimeSlotEditorView.swift in Sources */,
+				BA564701309B2308002F52E6 /* VirtualMatrixView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,23 +499,23 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"idotmatrix-swift/Preview Content\"";
-				DEVELOPMENT_TEAM = 38TP6LZLJ5;
+				DEVELOPMENT_TEAM = X9M74CMP4B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "idotmatrix-swift/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Dot Matrix Display";
+				INFOPLIST_KEY_CFBundleDisplayName = "iDotMatrix Studio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = Spotify;
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bro I need";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is required to connect and stream pixel art, animations, and controls to your LED matrix display.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Utkarsh Bhati. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "aviwadhwa.idotmatrix-swift";
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arcodexx.idotmatrix-studio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -362,23 +535,23 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"idotmatrix-swift/Preview Content\"";
-				DEVELOPMENT_TEAM = 38TP6LZLJ5;
+				DEVELOPMENT_TEAM = X9M74CMP4B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "idotmatrix-swift/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Dot Matrix Display";
+				INFOPLIST_KEY_CFBundleDisplayName = "iDotMatrix Studio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = Spotify;
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bro I need";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is required to connect and stream pixel art, animations, and controls to your LED matrix display.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Utkarsh Bhati. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "aviwadhwa.idotmatrix-swift";
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arcodexx.idotmatrix-studio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -417,7 +590,7 @@
 			repositoryURL = "https://github.com/buh/CompactSlider.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.6;
+				minimumVersion = 2.0.0;
 			};
 		};
 		8F352AF92C69530500D107CD /* XCRemoteSwiftPackageReference "fluid-menu-bar-extra" */ = {
