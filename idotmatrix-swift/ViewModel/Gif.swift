@@ -38,8 +38,6 @@ extension ViewModel {
 
         // Initial header based on Python example - create ONCE
         let headerTemplate = Data([255, 255, 1, 0, 0, 255, 255, 255, 255, 255, 255, 255, 255, 5, 0, 13])
-//        let hexString = headerTemplate.map { String(format: "%02x", $0) }.joined(separator: "")
-//        print(hexString)
         // Split GIF data into chunks first, just like Python
         let gifChunks = stride(from: 0, to: gifData.count, by: 4096).map {
             gifData.subdata(in: $0..<min($0 + 4096, gifData.count))
@@ -74,8 +72,24 @@ extension ViewModel {
             self.currentPreviewImage = NSImage(data: gifData)
         }
 
+        // Write within CoreBluetooth's 512B characteristic limit using acknowledged writes
+        let maxSliceSize = 500
         for chunk in chunks {
-            sendData(data: chunk)
+            var offset = 0
+            while offset < chunk.count {
+                let len = min(maxSliceSize, chunk.count - offset)
+                let slice = chunk.subdata(in: offset..<(offset + len))
+                sendData(data: slice, .withResponse)
+                offset += len
+                if offset < chunk.count {
+                    do {
+                        try await Task.sleep(nanoseconds: 30_000_000) // 30ms between BLE slices
+                    } catch {
+                        print("GIF sending cancelled")
+                        return
+                    }
+                }
+            }
             if delay > 0 {
                 do {
                     try await Task.sleep(nanoseconds: delay)

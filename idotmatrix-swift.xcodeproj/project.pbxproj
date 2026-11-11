@@ -49,6 +49,7 @@
 		BA5646EB309B2308002F52E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA5646EB309B2308002F52E6 /* Assets.xcassets */; };
 		BA5646D6309B2308002F52E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA5646D6309B2308002F52E6 /* Preview Assets.xcassets */; };
 		BA5646EF309B2308002F52E6 /* gifsicle in Resources */ = {isa = PBXBuildFile; fileRef = AA5646EF309B2308002F52E6 /* gifsicle */; };
+		BA5646D8309B2308002F52E6 /* divoom_convert.py in Resources */ = {isa = PBXBuildFile; fileRef = AA5646D8309B2308002F52E6 /* divoom_convert.py */; };
 		8F352AF32C674AA700D107CD /* CompactSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 8F352AF22C674AA700D107CD /* CompactSlider */; };
 		8F352AFB2C69530500D107CD /* FluidMenuBarExtra in Frameworks */ = {isa = PBXBuildFile; platformFilters = (macos, ); productRef = 8F352AFA2C69530500D107CD /* FluidMenuBarExtra */; };
 		8F3730752C65D189000421B9 /* SwiftBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 8F3730742C65D189000421B9 /* SwiftBluetooth */; };
@@ -314,6 +315,7 @@
 				BA5646D6309B2308002F52E6 /* Preview Assets.xcassets in Resources */,
 				BA5646EB309B2308002F52E6 /* Assets.xcassets in Resources */,
 				BA5646EF309B2308002F52E6 /* gifsicle in Resources */,
+				BA5646D8309B2308002F52E6 /* divoom_convert.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +509,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "iDotMatrix Studio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSAppleEventsUsageDescription = Spotify;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "iDotMatrix Studio connects to Spotify to display currently playing album artwork and song titles on your LED matrix.";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is required to connect and stream pixel art, animations, and controls to your LED matrix display.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Utkarsh Bhati. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -516,7 +518,7 @@
 				);
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arcodexx.idotmatrix-studio";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "iDotMatrix Studio";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -543,7 +545,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "iDotMatrix Studio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSAppleEventsUsageDescription = Spotify;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "iDotMatrix Studio connects to Spotify to display currently playing album artwork and song titles on your LED matrix.";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is required to connect and stream pixel art, animations, and controls to your LED matrix display.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Utkarsh Bhati. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -552,7 +554,7 @@
 				);
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arcodexx.idotmatrix-studio";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "iDotMatrix Studio";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;

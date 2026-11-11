@@ -40,7 +40,8 @@ Combining a lightweight **MenuBar Quick View** for instant control with a rich, 
 ### 🌐 Divoom Cloud Community Library
 * Connect and browse thousands of animated GIFs and pixel artworks shared by the global community.
 * 17 curated categories: *Recommended, Emoji, Nature, Gaming, Creative, Animals, Patterns, and more*.
-* Seamless background authentication and instant preview.
+* Simple sign-in with any free Divoom account (register via the free Divoom [iOS](https://apps.apple.com/us/app/divoom-pixel-art-community/id1237452417) or [Android](https://play.google.com/store/apps/details?id=com.divoom.Divoom) app).
+* *Disclaimer: Uses unofficial community reverse-engineered endpoints and is not affiliated with or endorsed by Divoom Co., Ltd.*
 
 ### 🎵 Music & Spotify Visualizer
 * Automatically syncs and downsamples current playing album artwork to your 32×32 LED display in real time.

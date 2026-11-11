@@ -26,43 +26,61 @@ struct DivoomLibraryView: View {
         VStack {
             // Header
             HStack {
-                Text("Divoom Library")
+                Text("Divoom Community Library")
                     .bold()
 
                 Spacer()
 
                 if client.isLoggedIn {
-                   // Picker Temporarily Disabled due to Format 8 issues
-                   // Picker("Category", selection: $selectedCategory) {
-                   //    ForEach(DivoomCategory.allCases) { category in
-                   //        Text(category.title).tag(category)
-                   //    }
-                   // }
-                   // .pickerStyle(MenuPickerStyle())
-                   // .frame(width: 150)
-                   Text("Recommended")
-                       .font(.subheadline)
-                       .foregroundStyle(.secondary)
+                    Text("Recommended")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+
+                    Button("Sign Out") {
+                        client.isLoggedIn = false
+                        client.currentUser = nil
+                        UserDefaults.standard.removeObject(forKey: "divoom_email")
+                        UserDefaults.standard.removeObject(forKey: "divoom_password")
+                        files.removeAll()
+                    }
+                    .font(.caption)
+                    .buttonStyle(.borderless)
+                    .foregroundStyle(.secondary)
+                    .padding(.leading, 8)
                 }
             }
             .padding()
 
             if !client.isLoggedIn {
                 // Login View
-                VStack(spacing: 20) {
-                    Text("Login to Divoom")
-                        .font(.title)
+                VStack(spacing: 16) {
+                    Image(systemName: "globe.americas.fill")
+                        .font(.system(size: 44))
+                        .foregroundStyle(.blue.gradient)
 
-                    TextField("Email", text: $email)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(width: 300)
+                    Text("Divoom Community Gallery")
+                        .font(.title2.bold())
 
-                    SecureField("Password", text: $password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(width: 300)
+                    Text("Browse and stream thousands of community pixel art animations directly to your LED display.")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: 380)
+
+                    VStack(spacing: 10) {
+                        TextField("Divoom Account Email", text: $email)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .frame(width: 320)
+
+                        SecureField("Divoom Password", text: $password)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .frame(width: 320)
+                    }
+                    .padding(.top, 4)
 
                     if let err = loginError {
                         Text(err)
+                            .font(.caption)
                             .foregroundColor(.red)
                     }
 
@@ -71,12 +89,36 @@ struct DivoomLibraryView: View {
                             ProgressView()
                                 .controlSize(.small)
                         } else {
-                            Text("Login")
+                            Text("Sign In")
+                                .frame(width: 120)
                         }
                     }
                     .buttonStyle(.borderedProminent)
                     .disabled(isLoggingIn || email.isEmpty || password.isEmpty)
+
+                    Divider()
+                        .frame(width: 320)
+                        .padding(.vertical, 8)
+
+                    VStack(spacing: 8) {
+                        Text("Don't have a Divoom account? Download the app to register:")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                        HStack(spacing: 20) {
+                            Link(destination: URL(string: "https://apps.apple.com/us/app/divoom-pixel-art-community/id1237452417")!) {
+                                Label("iOS App Store", systemImage: "applelogo")
+                                    .font(.caption)
+                            }
+
+                            Link(destination: URL(string: "https://play.google.com/store/apps/details?id=com.divoom.Divoom")!) {
+                                Label("Google Play (Android)", systemImage: "play.circle")
+                                    .font(.caption)
+                            }
+                        }
+                    }
                 }
+                .padding(30)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 // Gallery View
