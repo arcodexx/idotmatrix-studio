@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8F37305F2C65CF7D000421B9"
-               BuildableName = "Dot Matrix.app"
+               BuildableName = "iDotMatrix Studio.app"
                BlueprintName = "Dot Matrix"
                ReferencedContainer = "container:idotmatrix-swift.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8F37305F2C65CF7D000421B9"
-            BuildableName = "Dot Matrix.app"
+            BuildableName = "iDotMatrix Studio.app"
             BlueprintName = "Dot Matrix"
             ReferencedContainer = "container:idotmatrix-swift.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8F37305F2C65CF7D000421B9"
-            BuildableName = "Dot Matrix.app"
+            BuildableName = "iDotMatrix Studio.app"
             BlueprintName = "Dot Matrix"
             ReferencedContainer = "container:idotmatrix-swift.xcodeproj">
          </BuildableReference>

@@ -4,6 +4,7 @@ import CoreImage
 #if os(macOS)
 import AppKit
 import ImageIO
+import ScriptingBridge
 #endif
 
 extension ViewModel {
@@ -34,69 +35,82 @@ extension ViewModel {
 
     func updateSpotifyAlbumArt() {
         #if os(macOS)
-        if !isSpotifyEnabled { return }
+        guard isSpotifyEnabled else { return }
 
-        // Cancel the previous task to prevent race conditions/corruption
+        guard let track = spotifyScript?.currentTrack,
+              let trackID = track.id?(),
+              let trackName = track.name,
+              let artworkUrlString = track.artworkUrl,
+              !artworkUrlString.isEmpty else {
+            return
+        }
+
+        // Handle Pause State
+        if let playerState = spotifyScript?.playerState, playerState == .paused, switchToClockOnPause {
+            print("Spotify: paused, switching to clock")
+            currentArtworkUrlString = ""
+            currentSpotifyTask?.cancel()
+            currentSpotifyTask = nil
+            Task { @MainActor in
+                self.setClock()
+            }
+            return
+        }
+
+        // If this track is already displayed and in-flight, avoid interrupting it with duplicate notifications
+        if trackID == currentArtworkUrlString && currentSpotifyTask != nil {
+            return
+        }
+
         currentSpotifyTask?.cancel()
 
         currentSpotifyTask = Task {
-            // Check for cancellation at start
             if Task.isCancelled { return }
 
-            // Handle Pause State
-            if let playerState = spotifyScript?.playerState, playerState == .paused, switchToClockOnPause {
-                print("Spotify paused, switching to clock")
-                currentArtworkUrlString = "" // Reset tracker so resume triggers update
-                await MainActor.run {
-                    self.setClock()
+            print("Spotify: Playing '\(trackName)' (ID: \(trackID)), fetching artwork from \(artworkUrlString)")
+
+            guard let artworkUrl = URL(string: artworkUrlString),
+                  let (data, _) = try? await URLSession.shared.data(from: artworkUrl) else {
+                print("Spotify: failed to download album artwork")
+                return
+            }
+
+            if Task.isCancelled { return }
+
+            let ciImage = CIImage(data: data)
+
+            // Generate GIF with scrolling text
+            if showSongTitle, let gifData = generateMarqueeGif(from: ciImage, text: trackName) {
+                if Task.isCancelled { return }
+
+                // Clear buffer with blank GIF to prevent artifacts
+                if let blankGif = getBlankGif() {
+                    await sendGif(blankGif, delay: 0)
+                    try? await Task.sleep(nanoseconds: 250_000_000) // 0.25s
                 }
-                return
-            }
 
-            guard let track = spotifyScript?.currentTrack,
-                  let artworkUrlString = track.artworkUrl,
-                  let trackID = track.id?(),
-                  let trackName = track.name else {
-                return
-            }
+                if Task.isCancelled { return }
+                print("Spotify: Sending marquee GIF (\(gifData.count) bytes)...")
+                await sendGif(gifData, delay: 40_000_000)
+                if !Task.isCancelled {
+                    currentArtworkUrlString = trackID
+                    print("Spotify: Marquee GIF sent successfully!")
+                }
+            } else {
+                // Fallback to static image if GIF generation skipped or fails, OR if showSongTitle is false
+                let filter = CIFilter(name: "CIColorControls")!
+                filter.setValue(ciImage, forKey: kCIInputImageKey)
+                filter.setValue(1.8, forKey: kCIInputSaturationKey)
+                let context = CIContext()
+                guard let outputImage = filter.outputImage,
+                      let image = context.pngRepresentation(of: outputImage, format: .RGBAh, colorSpace: CGColorSpace(name: CGColorSpace.dcip3)!) else { return }
 
-            let uniqueId = trackID
-
-            if uniqueId != "" && currentArtworkUrlString != uniqueId {
-                currentArtworkUrlString = uniqueId
-
-                if let artworkUrl = URL(string: artworkUrlString), let data = try? await URLSession.shared.data(from: artworkUrl) {
-
-                    if Task.isCancelled { return }
-
-                    let ciImage = CIImage(data: data.0)
-
-                    // Generate GIF with scrolling text
-                    if showSongTitle, let gifData = generateMarqueeGif(from: ciImage, text: trackName) {
-                        if Task.isCancelled { return }
-
-                        // Clear buffer with blank GIF to prevent artifacts
-                        // Use 0 delay for blank gif for instant flush
-                        if let blankGif = getBlankGif() {
-                             await sendGif(blankGif, delay: 0)
-                             // Robust delay to ensure device processes the clear
-                             try? await Task.sleep(nanoseconds: 250_000_000) // 0.25s
-                        }
-
-                        if Task.isCancelled { return }
-                        // Use 0.04s delay for reliability (0.03s was borderline)
-                        await sendGif(gifData, delay: 40_000_000)
-                    } else {
-                        // Fallback to static image if GIF generation skipped or fails, OR if showSongTitle is false
-                        let filter = CIFilter(name: "CIColorControls")!
-                        filter.setValue(ciImage, forKey: kCIInputImageKey)
-                        filter.setValue(1.8, forKey: kCIInputSaturationKey)
-                        let context = CIContext()
-                        guard let outputImage = filter.outputImage, let image = context.pngRepresentation(of: outputImage, format: .RGBAh, colorSpace: CGColorSpace(name: CGColorSpace.dcip3)!) else { return }
-
-                        if Task.isCancelled { return }
-                        await photoButtonClicked(data: image)
-                    }
+                if Task.isCancelled { return }
+                print("Spotify: Sending static album art (showSongTitle=\(showSongTitle))...")
+                await photoButtonClicked(data: image)
+                if !Task.isCancelled {
+                    currentArtworkUrlString = trackID
+                    print("Spotify: Static album art sent successfully!")
                 }
             }
         }
@@ -234,7 +248,7 @@ extension ViewModel {
         let frameProperties = [kCGImagePropertyGIFDictionary: [kCGImagePropertyGIFDelayTime: 0.1]]
 
         if let frameImage = bitmapContext.makeImage() {
-             CGImageDestinationAddImage(destination, frameImage, frameProperties as CFDictionary)
+            CGImageDestinationAddImage(destination, frameImage, frameProperties as CFDictionary)
         }
 
         if CGImageDestinationFinalize(destination) {

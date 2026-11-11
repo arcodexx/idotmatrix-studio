@@ -19,6 +19,7 @@ import ScriptingBridge
     var deviceStatus: DeviceStatusEnum = .on
     var device: Peripheral? = nil
     var character: CBCharacteristic?
+    var notifyCharacter: CBCharacteristic?
 
     // Current Time
     var calendar = Calendar.current
@@ -50,7 +51,15 @@ import ScriptingBridge
     }
 
     // Fullscreen Color & Clock
-    var color = DynamicColor.init(r: UserDefaults.standard.double(forKey: "red"), g: UserDefaults.standard.double(forKey: "green"), b: UserDefaults.standard.double(forKey: "blue"))
+    var color: DynamicColor = {
+        let r = UserDefaults.standard.double(forKey: "red")
+        let g = UserDefaults.standard.double(forKey: "green")
+        let b = UserDefaults.standard.double(forKey: "blue")
+        if r == 0 && g == 0 && b == 0 {
+            return DynamicColor(r: 255, g: 0, b: 0) // Default to Pure Red
+        }
+        return DynamicColor(r: r, g: g, b: b)
+    }()
 
     // Gif Image
     var gifUrl: URL?
@@ -62,10 +71,13 @@ import ScriptingBridge
         didSet {
             if isSpotifyEnabled {
                 currentScreen = .musicIntegration
+                currentArtworkUrlString = ""
                 updateSpotifyAlbumArt()
             } else {
                 currentArtworkUrlString = ""
                 currentlyDisplayingImage = .notImage
+                currentSpotifyTask?.cancel()
+                currentSpotifyTask = nil
                 setClock()
             }
         }
@@ -184,8 +196,8 @@ import ScriptingBridge
         let savedBlue = UserDefaults.standard.double(forKey: "blue")
 
         if savedRed == 0 && savedGreen == 0 && savedBlue == 0 {
-             // Default to White
-             self.color = DynamicColor(r: 255, g: 255, b: 255)
+             // Default to Pure Red
+             self.color = DynamicColor(r: 255, g: 0, b: 0)
         } else {
              self.color = DynamicColor(r: savedRed, g: savedGreen, b: savedBlue)
         }
@@ -233,22 +245,43 @@ import ScriptingBridge
 
     func searchAgain() {
         Task {
-            try await central.waitUntilReady()
-            let peripherals = await central.scanForPeripherals(timeout: 5)
+            print("searchAgain: waiting for central to be ready...")
+            do {
+                try await central.waitUntilReady()
+            } catch {
+                print("searchAgain: central.waitUntilReady failed with error: \(error)")
+                deviceStatus = .on
+                return
+            }
+            print("searchAgain: central is ready! Scanning for peripherals (timeout: 5s)...")
             deviceStatus = .searching
+            let peripherals = await central.scanForPeripherals(timeout: 5)
+            var foundAny = false
             for try await peripheral in peripherals {
+                foundAny = true
+                print("searchAgain: scanned peripheral: '\(peripheral.name ?? "unknown")' (\(peripheral.identifier))")
                 if peripheral.name?.hasPrefix("IDM-") == true {
                     device = peripheral
-                    print("we found our device!")
+                    print("searchAgain: found our IDM- device! Connecting...")
                     do {
                         try await central.connect(device!, timeout: 5)
                         deviceStatus = .connected
+                        print("searchAgain: successfully connected to \(peripheral.name ?? "device")!")
                     } catch {
-                        print(error)
+                        print("searchAgain: connection failed: \(error)")
+                        deviceStatus = .on
+                        return
                     }
-                    if let service = try await device?.discoverServices().first, let character = try? await peripheral.discoverCharacteristics(for: service).first {
+                    if let service = try? await device?.discoverServices().first,
+                       let chars = try? await peripheral.discoverCharacteristics(for: service),
+                       let character = chars.first {
                         self.character = character
                         deviceStatus = .connected
+                        if let notifyChar = chars.first(where: { $0.uuid.uuidString.uppercased().contains("FA03") }) {
+                            self.notifyCharacter = notifyChar
+                            _ = try? await peripheral.setNotifyValue(true, for: notifyChar)
+                        }
+                        print("searchAgain: discovered characteristic, syncing initial clock & time!")
                         try? await Task.sleep(nanoseconds: 100000000)
 
                         // Sync time and clock on connection
@@ -256,9 +289,16 @@ import ScriptingBridge
                         setTime()
                         setBrightness()
                         cancelEco()
+                    } else {
+                        print("searchAgain: failed to discover service or characteristic!")
                     }
                     return
                 }
+            }
+            if !foundAny {
+                print("searchAgain: scan completed but 0 peripherals were detected. Check Mac Bluetooth permissions or power cycle the display.")
+            } else {
+                print("searchAgain: scan completed, but no peripheral had prefix 'IDM-'.")
             }
             deviceStatus = .on
         }
@@ -268,6 +308,7 @@ import ScriptingBridge
         defer {
             deviceStatus = .on
             character = nil
+            notifyCharacter = nil
             screenTurnedOn = true
             screenFlip = false
         }
@@ -310,8 +351,24 @@ import ScriptingBridge
         }
 
         // 3. Run Python Script
-        // Getting path relative to bundle resource would be better but using fixed path for now as per previous
-        let scriptPath = "/Users/utkarsh/Sites/personal/idotmatrix-swift/idotmatrix-swift/Scripts/divoom_convert.py"
+        let scriptPath: String
+        if let bundlePath = Bundle.main.path(forResource: "divoom_convert", ofType: "py") {
+            scriptPath = bundlePath
+        } else if let resourceUrl = Bundle.main.resourceURL?.appendingPathComponent("divoom_convert.py"),
+                  FileManager.default.fileExists(atPath: resourceUrl.path) {
+            scriptPath = resourceUrl.path
+        } else {
+            // Development fallback relative to current working directory
+            let currentDirFallback = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+                .appendingPathComponent("idotmatrix-swift/Scripts/divoom_convert.py").path
+            if FileManager.default.fileExists(atPath: currentDirFallback) {
+                scriptPath = currentDirFallback
+            } else {
+                print("Failed to locate divoom_convert.py in app bundle or working directory")
+                failedUrls.insert(url)
+                return nil
+            }
+        }
 
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
@@ -327,7 +384,7 @@ import ScriptingBridge
             process.waitUntilExit()
 
             let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            if let output = String(data: data, encoding: .utf8) {
+            if let output = String(data: data, encoding: .utf8), !output.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 // print("Python Output: \(output)")
             }
 

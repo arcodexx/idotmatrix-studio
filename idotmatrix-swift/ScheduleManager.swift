@@ -56,8 +56,12 @@ class ScheduleManager: ObservableObject {
     }
 
     private var fileURL: URL? {
-        guard let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        return documents.appendingPathComponent(fileName)
+        guard let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else { return nil }
+        let appDir = appSupport.appendingPathComponent("iDotMatrix Studio", isDirectory: true)
+        if !FileManager.default.fileExists(atPath: appDir.path) {
+            try? FileManager.default.createDirectory(at: appDir, withIntermediateDirectories: true)
+        }
+        return appDir.appendingPathComponent(fileName)
     }
 
     func loadSchedules() {

@@ -150,6 +150,15 @@ public struct MenuBarQuickView: View {
                     }
                 }
 
+                // Music Quick Settings (revealed when Music mode is active)
+                if viewModel.isSpotifyEnabled {
+                    Toggle("Title Overlay", isOn: $viewModel.showSongTitle)
+                        .toggleStyle(.switch)
+                        .controlSize(.mini)
+                        .font(.system(size: 10, weight: .medium))
+                        .padding(.top, 2)
+                }
+
                 // Saturated Color Swatches (revealed when Color mode is active)
                 if viewModel.currentScreen == .fullscreenColor {
                     HStack(spacing: 7) {
